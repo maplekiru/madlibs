@@ -7,3 +7,13 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret"
 
 debug = DebugToolbarExtension(app)
+
+@app.route('/')
+def home():
+    """Root end point to questions form"""
+    
+    prompts = silly_story.prompts
+
+    return render_template('questions.html', prompts=prompts)
+
+
