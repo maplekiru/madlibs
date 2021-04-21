@@ -10,10 +10,19 @@ debug = DebugToolbarExtension(app)
 
 @app.route('/')
 def home():
-    """Root end point to questions form"""
+    """generate to questions form with word prompts"""
     
     prompts = silly_story.prompts
 
     return render_template('questions.html', prompts=prompts)
+
+
+@app.route('/results')
+def results():
+    """Displays results as text story from story instance 
+    from the homepage form"""
+
+    story = silly_story.generate(request.args)
+    return render_template('story.html', story=story)
 
 
